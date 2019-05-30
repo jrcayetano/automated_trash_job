@@ -10,6 +10,8 @@
       #input
     />
   </div>
+  <label>Separator</label>
+  <input [(ngModel)]="separator" type="text" maxlength="1" />
 
   <div *ngFor="let father of objectKeys; let i = index">
     <h1 *ngIf="father; else na">{{ father }}</h1>

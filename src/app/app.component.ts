@@ -19,16 +19,18 @@ export class AppComponent {
   objectKeys = [];
   objectInArray = [];
 
+  separator = ';';
+
   csvJSON(csvText) {
     const lines = csvText.split('\n');
 
     const result = [];
 
-    const headers: string[] = lines[0].split(',');
+    const headers: string[] = lines[0].split(this.separator);
 
     for (let i = 1; i < lines.length - 1; i++) {
       const obj = {};
-      const currentline = lines[i].split(',');
+      const currentline = lines[i].split(this.separator);
 
       for (let j = 0; j < headers.length; j++) {
         obj[headers[j]] = currentline[j];
@@ -41,6 +43,7 @@ export class AppComponent {
     this.JSONData = JSON.stringify(result);
   }
   convertFile(input) {
+    this.objectKeys = [];
     const reader = new FileReader();
     reader.readAsText(input.files[0], 'ISO-8859-1');
     reader.onload = () => {
